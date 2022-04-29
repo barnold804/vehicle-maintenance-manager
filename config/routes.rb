@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :owners
+  resources :vehicles
+  resources :maintenance_records
+
+  post '/login', to: 'sessions#create'
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
