@@ -1,7 +1,7 @@
 class VehiclesController < ApplicationController
 
     def index
-        render json: Vehicle.all
+        render json: Vehicle.where(user_id: params[:user_id])
     end
 
     def show
