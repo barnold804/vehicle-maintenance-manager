@@ -6,7 +6,7 @@ class CreateVehicles < ActiveRecord::Migration[6.1]
       t.string :model
       t.integer :mileage
 
-      t.belongs_to :owner, null: true, foreign_key: true
+      t.belongs_to :user, null: true, foreign_key: true
 
       t.timestamps
     end

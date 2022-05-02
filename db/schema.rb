@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_04_28_154008) do
     t.index ["vehicle_id"], name: "index_maintenance_records_on_vehicle_id"
   end
 
-  create_table "owners", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email_address"
     t.string "password_digest"
@@ -42,12 +42,12 @@ ActiveRecord::Schema.define(version: 2022_04_28_154008) do
     t.string "make"
     t.string "model"
     t.integer "mileage"
-    t.bigint "owner_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["owner_id"], name: "index_vehicles_on_owner_id"
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
   add_foreign_key "maintenance_records", "vehicles"
-  add_foreign_key "vehicles", "owners"
+  add_foreign_key "vehicles", "users"
 end
