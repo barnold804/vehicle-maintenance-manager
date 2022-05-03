@@ -7,7 +7,7 @@ import Vehicles from "./Vehicles"
 import MaintenanceRecords from "./MaintenanceRecords"
 
 function App() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const [vehicles, setVehicles] = useState([]);
   const [maintenanceRecords, setMaintenanceRecords] = useState([]);
 
@@ -42,16 +42,14 @@ function App() {
     setUser("");
   }
 
-
-
   if (!user)
     return (
       <div>
         <div style={{ paddingBottom: 60 }}>
           <Header user={user} onLogout={handleLogout} />
           <Login onLogin={setUser} />
-          <Vehicles />
-          <MaintenanceRecords />
+          <Vehicles vehicles={vehicles} />
+          <MaintenanceRecords maintenanceRecords={maintenanceRecords}/>
         </div>
         <Footer></Footer>
       </div>

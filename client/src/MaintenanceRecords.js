@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-function MaintenanceRecords({}) {
+function MaintenanceRecords({user, setUser}) {
 
     return (
-        <div>Maintenance Records</div>
+        <div>
+            Maintenance Records
+        </div>
     );
 };
 
