@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm({ onLogin }) {
+function Login({ onLogin }) {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -69,4 +69,4 @@ function LoginForm({ onLogin }) {
     );
 }
 
-export default LoginForm
+export default Login
