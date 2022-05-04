@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 
-function Vehicles({user, setUser}) {
+function Vehicles() {
 
-    return (
-        <div>
-            Vehicles
-        </div>
-    )
-};
+}
 
 export default Vehicles;

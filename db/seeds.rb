@@ -9,7 +9,7 @@ puts "🌱 🌱 Seeding started..."
 puts "Creating User..."
 
 5.times do
-    user = User.create(name: Faker::Name.name, email_address: "email@address.com", password: "password" )
+    user = User.create(name: Faker::Name.name, email_address: Faker::Internet.email, password: "password" )
     
     puts "Creating Vehicles..."
     5.times do
