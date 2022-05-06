@@ -4,6 +4,7 @@ import Login from "./Login";
 import Header from "./Header";
 import Footer from "./Footer";
 import VehiclesTable from "./VehiclesTable"
+import VehicleForm from "./VehicleForm";
 
 function App() {
   const [user, setUser] = useState("");
@@ -25,7 +26,7 @@ function App() {
         r.json().then((vehicles) => setVehicles(vehicles));
       }
     });
-  }, [user, vehicles]);
+  }, [user]);
 
   function handleLogout() {
     setUser("");
@@ -46,7 +47,8 @@ function App() {
   return (
     <div className="App">
       <Header user={user} onLogout={handleLogout} />
-      <VehiclesTable key={user.id} vehicles={vehicles} onLogout={handleLogout} user={user} />
+      <VehicleForm user={user} vehicles={vehicles} />
+      <VehiclesTable vehicles={vehicles} onLogout={handleLogout} user={user} />
       <Routes>
       <Route exact path="/login" element={<Login />} />
       </Routes>
