@@ -1,28 +1,16 @@
 import React, { useState } from "react";
 
-function VehicleRow({ user, id, year, make, model, mileage }) {
-
-    function handleDeleteClick() {
-        fetch(`users/${user.id}/vehicles/${id}`, {
-          method: "DELETE",
-        })
-        //   .then((r) => r.json())
-          .then(() => console.log("vehicle deleted!"));
-      }
+function VehicleRow({ vehicle, handleDeleteVehicle }) {
 
     return (
-        <tr key={id}>
-            <td>{id}</td>
-            <td>{year}</td>
-            <td>{make}</td>
-            <td>{model}</td>
-            <td>{mileage}</td>
+        <tr key={vehicle.id}>
+            <td>{vehicle.id}</td>
+            <td>{vehicle.year}</td>
+            <td>{vehicle.make}</td>
+            <td>{vehicle.model}</td>
+            <td>{vehicle.mileage}</td>
             <td>
-                <button
-                    onClick={handleDeleteClick}
-                >
-                    Remove Vehicle
-                </button>
+                <button onClick={(event) => handleDeleteVehicle(event, vehicle)}>Remove Vehicle</button>
             </td>
         </tr>
     )

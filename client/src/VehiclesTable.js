@@ -3,6 +3,24 @@ import VehicleRow from "./VehicleRow";
 
 function VehiclesTable({ user, vehicles }) {
 
+  function deleteVehicle(vehicle) {
+    let indexedVehicle = vehicles.indexOf(vehicle)
+    vehicles.slice(indexedVehicle, 1)
+  }
+
+  function handleDeleteVehicle(event, vehicle) {
+    fetch(`users/${user.id}/vehicles/${vehicle.id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        deleteVehicle(vehicle)
+        console.log("Delete was successful")
+      } else {
+        console.log("Delete was not successful")
+      }
+    })
+  }
+
   return (
     <div>
       Vehicles
@@ -19,7 +37,7 @@ function VehiclesTable({ user, vehicles }) {
         </thead>
         <tbody>
           {vehicles.map((v) => (
-            <VehicleRow key={v.id} id={v.id} user={user} year={v.year} make={v.make} model={v.model} mileage={v.mileage} />
+            <VehicleRow key={v.id} vehicle={v} handleDeleteVehicle={handleDeleteVehicle} />
           ))
           }
         </tbody>

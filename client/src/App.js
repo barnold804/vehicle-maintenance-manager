@@ -25,7 +25,7 @@ function App() {
         r.json().then((vehicles) => setVehicles(vehicles));
       }
     });
-  }, [user]);
+  }, [user, vehicles]);
 
   function handleLogout() {
     setUser("");
