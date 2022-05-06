@@ -9,7 +9,7 @@ class CreateMaintenanceRecords < ActiveRecord::Migration[6.1]
       t.string :address
       t.integer :cost
 
-      t.belongs_to :vehicle, null: true, foreign_key: :true
+      t.references :vehicle, index: true, foreign_key: {on_delete: :cascade}
 
       t.timestamps
     end

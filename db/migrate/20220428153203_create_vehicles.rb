@@ -6,7 +6,7 @@ class CreateVehicles < ActiveRecord::Migration[6.1]
       t.string :model
       t.integer :mileage
 
-      t.belongs_to :user, null: true, foreign_key: true
+      t.references :user, index: true, foreign_key: {on_delete: :cascade}
 
       t.timestamps
     end

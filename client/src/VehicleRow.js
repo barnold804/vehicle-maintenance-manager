@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
-function VehicleRow({ id, year, make, model, mileage }) {
+function VehicleRow({ user, id, year, make, model, mileage }) {
+
+    function handleDeleteClick() {
+        fetch(`users/${user.id}/vehicles/${id}`, {
+          method: "DELETE",
+        })
+        //   .then((r) => r.json())
+          .then(() => console.log("vehicle deleted!"));
+      }
 
     return (
         <tr key={id}>
@@ -9,6 +17,13 @@ function VehicleRow({ id, year, make, model, mileage }) {
             <td>{make}</td>
             <td>{model}</td>
             <td>{mileage}</td>
+            <td>
+                <button
+                    onClick={handleDeleteClick}
+                >
+                    Remove Vehicle
+                </button>
+            </td>
         </tr>
     )
 }
