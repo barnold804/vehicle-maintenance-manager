@@ -8,12 +8,20 @@ puts "🌱 🌱 Seeding started..."
 
 puts "Creating User..."
 
-brian = User.create(name: "Brian Arnold", email_address: "arnold804@brian.com", password: "password" )
-vehicle = Vehicle.create(user: brian, year: 2004, make: "BMW", model: "330Ci", mileage: 167000)
-maintenance_record = MaintenanceRecord.create(vehicle: vehicle, category: "category here", description: "descripton here", comment: "comment here", date: Faker::Date.between(from: 5.years.ago, to: Date.today), mileage: vehicle.mileage + 100, address: "address here", cost: rand(50...2500))     
+users = [
+    [ "Brian Arnold", "arnold804@brian.com" ],
+    [ "Pam Smith ", "pam@smith.com" ],
+    [ "George Weber", "george@weber.com" ],
+    [ "Pete Perkins", "pete@perkins.com" ],
+    [ "Ken Hofmeister", "ken@hofmeister.com" ]
+]
 
-5.times do
-    user = User.create(name: Faker::Name.name, email_address: Faker::Internet.email, password: "password" )
+# brian = User.create(name: "Brian Arnold", email_address: "arnold804@brian.com", password: "password" )
+# vehicle = Vehicle.create(user: brian, year: 2004, make: "BMW", model: "330Ci", mileage: 167000)
+# maintenance_record = MaintenanceRecord.create(vehicle: vehicle, category: "category here", description: "descripton here", comment: "comment here", date: Faker::Date.between(from: 5.years.ago, to: Date.today), mileage: vehicle.mileage + 100, address: "address here", cost: rand(50...2500))     
+
+users.each do |u|
+    user = User.create(name: u[0], email_address: u[1], password: "password" )
     
     puts "Creating Vehicles..."
     5.times do
