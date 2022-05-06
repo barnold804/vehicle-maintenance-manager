@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import VehicleRow from "./VehicleRow";
 
 function VehiclesTable({ vehicles }) {
 
@@ -17,13 +18,7 @@ function VehiclesTable({ vehicles }) {
         </thead>
         <tbody>
           {vehicles.map((v) => (
-            <tr key={v.id}>
-              <td>{v.id}</td>
-              <td>{v.year}</td>
-              <td>{v.make}</td>
-              <td>{v.model}</td>
-              <td>{v.mileage}</td>
-            </tr>
+            <VehicleRow key={v.id} id={v.id} year={v.year} make={v.make} model={v.model} mileage={v.mileage} />
           ))
           }
         </tbody>
