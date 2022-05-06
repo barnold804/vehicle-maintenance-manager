@@ -1,72 +1,55 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import LoginForm from "./LoginForm";
+import SignUpForm from "./SignupForm";
+import { useState } from "react";
 
 function Login({ onLogin }) {
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate()
+  const [showLogin, setShowLogin] = useState(true);
 
-  function handleSubmit(e) {
-      navigate("/");
-      e.preventDefault();
-      setIsLoading(true);
-      fetch("/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emailAddress, password }),
-      }).then((r) => {
-          setIsLoading(false);
-          if (r.ok) {
-            r.json().then((user) => onLogin(user));
-          } else {
-            r.json().then((err) => setErrors(err.errors));
-          }
-        });
-    }
-
-    return (
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "auto",
-          margin: "auto",
-        }}
-      >
-        <label htmlFor="email_address">Email Address</label>
-        <input
-          type="text"
-          id="email_address"
-          autoComplete="off"
-          value={emailAddress}
-          onChange={(e) => setEmailAddress(e.target.value.toLowerCase())}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button variant="fill" type="submit" style={{ marginTop: 10 }}>
-          {isLoading ? "Loading..." : "Login"}
-        </button>
-        {errors.map((err) => (
-          <h3
-            key={err}
-            style={{ display: "block", margin: "auto", marginTop: 10 }}
+  return (
+    <div>
+      {showLogin ? (
+        <>
+          <br />
+          <br />
+          <h1
+            style={{ display: "block", margin: "auto", width: "fit-content" }}
           >
-            {err}
-          </h3>
-        ))}
-      </form>
-    );
+            Vehicle Maintenance Manager
+          </h1>
+          <br />
+          <LoginForm onLogin={onLogin} />
+          <br />
+          <div
+            style={{ display: "block", margin: "auto", width: "fit-content" }}
+          >
+            <p>
+              New user? &nbsp;
+              <button color="secondary" onClick={() => setShowLogin(false)}>
+                Sign Up
+              </button>
+            </p>
+          </div>
+        </>
+      ) : (
+        <>
+          <br />
+          <br />
+          <SignUpForm onLogin={onLogin} />
+          <br />
+          <div
+            style={{ display: "block", margin: "auto", width: "fit-content" }}
+          >
+            <p>
+              &nbsp;
+              <button color="secondary" onClick={() => setShowLogin(true)}>
+                Back to Login
+              </button>
+            </p>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
-export default Login
+export default Login;

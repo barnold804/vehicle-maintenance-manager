@@ -14,7 +14,7 @@ function Footer() {
       <p
         style={{
           textAlign: "center",
-          fontSize: ".5vw",
+          fontSize: "1vw",
         }}
       >
         Created by:{" "}
@@ -24,7 +24,6 @@ function Footer() {
         >
           Brian Arnold
         </a>{" "}
-        |{" "}
       </p>
     </div>
   );

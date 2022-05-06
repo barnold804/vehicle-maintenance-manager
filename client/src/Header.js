@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Header({ user, onLogout }) {
@@ -26,9 +26,6 @@ function Header({ user, onLogout }) {
             >
               Logout
             </Link>
-            <Link to={"profile"} style={{ display: "block", margin: "auto" }}>
-              Profile
-            </Link>
 
             <p
               style={{
@@ -39,7 +36,8 @@ function Header({ user, onLogout }) {
             >
               Welcome, {user.name}!
             </p>
-          </div>
+          </div>  
+
         ) : null
       }
     </div>

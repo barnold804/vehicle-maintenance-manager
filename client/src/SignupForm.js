@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignupForm({ onLogin, user }) {
+  const [name, setName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -40,13 +41,21 @@ function SignupForm({ onLogin, user }) {
           margin: "auto",
         }}
       >
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          autoComplete="off"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <label htmlFor="email_address">Email Address</label>
         <input
           type="text"
           id="email_address"
           autoComplete="off"
           value={emailAddress}
-          onChange={(e) => setEmailAddress(e.target.value.toLowerCase())}
+          onChange={(e) => setEmailAddress}
         />
         <label htmlFor="password">Password</label>
         <input
