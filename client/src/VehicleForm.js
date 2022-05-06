@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 
-function VehicleForm({ user, vehicles }) {
+function VehicleForm({ user, vehicles, setVehicles }) {
 
   const [year, setYear] = useState(0)
   const [make, setMake] = useState("")
   const [model, setModel] = useState("")
   const [mileage, setMilage] = useState(0)
   const [errors, setErrors] = useState([]);
-
-  function createVehicle(vehicle) {
-    let indexedVehicle = vehicles.indexOf(vehicle)
-    vehicles.slice(indexedVehicle, 1)
-  }
 
   function handleCreateVehicle(e) {
     e.preventDefault();
@@ -28,7 +23,10 @@ function VehicleForm({ user, vehicles }) {
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((vehicle) => createVehicle(vehicle));
+        r.json().then((vehicle) => {
+          vehicles.push(vehicle)
+          setVehicles([...vehicles])
+        });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

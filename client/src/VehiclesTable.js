@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import VehicleRow from "./VehicleRow";
 
-function VehiclesTable({ user, vehicles }) {
-
-  function deleteVehicle(vehicle) {
-    let indexedVehicle = vehicles.indexOf(vehicle)
-    vehicles.slice(indexedVehicle, 1)
-  }
+function VehiclesTable({ user, vehicles, setVehicles }) {
 
   function handleDeleteVehicle(event, vehicle) {
     fetch(`users/${user.id}/vehicles/${vehicle.id}`, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        deleteVehicle(vehicle)
+        setVehicles(vehicles.filter(v => v.id !== vehicle.id))
         console.log("Delete was successful")
       } else {
         console.log("Delete was not successful")

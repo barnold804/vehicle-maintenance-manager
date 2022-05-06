@@ -47,8 +47,8 @@ function App() {
   return (
     <div className="App">
       <Header user={user} onLogout={handleLogout} />
-      <VehicleForm user={user} vehicles={vehicles} />
-      <VehiclesTable vehicles={vehicles} onLogout={handleLogout} user={user} />
+      <VehicleForm user={user} vehicles={vehicles} setVehicles={setVehicles} />
+      <VehiclesTable vehicles={vehicles} setVehicles={setVehicles} onLogout={handleLogout} user={user} />
       <Routes>
       <Route exact path="/login" element={<Login />} />
       </Routes>
