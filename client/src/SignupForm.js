@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function SignupForm({ onLogin, user }) {
   const [name, setName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
+  const [email_address, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ function SignupForm({ onLogin, user }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ emailAddress, password }),
+      body: JSON.stringify({ name, email_address, password }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
@@ -54,8 +54,8 @@ function SignupForm({ onLogin, user }) {
           type="text"
           id="email_address"
           autoComplete="off"
-          value={emailAddress}
-          onChange={(e) => setEmailAddress}
+          value={email_address}
+          onChange={(e) => setEmailAddress(e.target.value)}
         />
         <label htmlFor="password">Password</label>
         <input
