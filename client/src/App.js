@@ -5,10 +5,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 import VehiclesTable from "./VehiclesTable"
 import VehicleForm from "./VehicleForm";
+import MaintenanceRecordTable from "./MaintenanceRecordTable";
 
 function App() {
   const [user, setUser] = useState("");
   const [vehicles, setVehicles] = useState([]);
+  const [maintenance_records, setMaintenanceRecords] = useState([]);
 
   // Fetch User // This should depend on a session existing
   useEffect(() => {
@@ -30,6 +32,7 @@ function App() {
 
   function handleLogout() {
     setUser("");
+    setMaintenanceRecords("");
   }
 
   if (!user) {
@@ -48,10 +51,11 @@ function App() {
     <div className="App">
       <Header user={user} onLogout={handleLogout} />
       <VehicleForm user={user} vehicles={vehicles} setVehicles={setVehicles} />
-      <VehiclesTable vehicles={vehicles} setVehicles={setVehicles} onLogout={handleLogout} user={user} />
+      <VehiclesTable vehicles={vehicles} setMaintenanceRecords={setMaintenanceRecords} setVehicles={setVehicles} onLogout={handleLogout} user={user} />
+      {maintenance_records.length === 0 ? <></> : <MaintenanceRecordTable maintenance_records={maintenance_records} onLogout={handleLogout}/> }
       <Routes>
       <Route exact path="/login" element={<Login />} />
-      </Routes>
+      </Routes>    
       <Footer></Footer>
     </div>
   );
