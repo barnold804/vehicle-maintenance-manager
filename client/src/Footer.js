@@ -7,7 +7,7 @@ function Footer() {
       style={{
         width: "100%",
         height: 60,
-        position: "absolute",
+        position: "relative",
         bottom: 0,
       }}
     >

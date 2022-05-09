@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function MaintenanceRecordForm({ user, vehicle, maintenance_records, setMaintenanceRecords, currentVehicle }) {
+function MaintenanceRecordForm({ user, maintenance_records, setMaintenanceRecords, currentVehicle }) {
 
   const [category, setCategory] = useState("")
   const [description, setDescription] = useState("")
@@ -11,12 +11,20 @@ function MaintenanceRecordForm({ user, vehicle, maintenance_records, setMaintena
   const [cost, setCost] = useState("");
   const [errors, setErrors] = useState([]);
 
+  function clearForm() {
+    setCategory("")
+    setDescription("")
+    setComment("")
+    setDate("")
+    setMilage("")
+    setAddress("")
+    setCost("")
+    setErrors([])
+}
+
   function handleCreateMaintenanceRecord(e) {
     e.preventDefault();
-    console.log(user)
-    console.log(vehicle)
-    console.log(maintenance_records)
-    fetch(`users/${user.id}/vehicles/${vehicle.id}/maintenance_records`, {
+    fetch(`users/${user.id}/vehicles/${currentVehicle.id}/maintenance_records`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +43,7 @@ function MaintenanceRecordForm({ user, vehicle, maintenance_records, setMaintena
         r.json().then((maintenance_record) => {
             maintenance_records.push(maintenance_record)
           setMaintenanceRecords([...maintenance_records])
+          clearForm()
         });
       } else {
         r.json().then((err) => setErrors(err.errors));

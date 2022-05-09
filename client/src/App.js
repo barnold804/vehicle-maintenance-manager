@@ -56,7 +56,7 @@ function App() {
       <VehiclesTable vehicles={vehicles} setMaintenanceRecords={setMaintenanceRecords} setVehicles={setVehicles} setCurrentVehicle={setCurrentVehicle} user={user} />
       <VehicleForm user={user} vehicles={vehicles} setVehicles={setVehicles} setCurrentVehicle={setCurrentVehicle} />
       <MaintenanceRecordTable maintenance_records={maintenance_records} currentVehicle={currentVehicle} />
-      <MaintenanceRecordForm user={user} currentVehicle={currentVehicle} setMaintenanceRecords={setMaintenanceRecords} />
+      <MaintenanceRecordForm user={user} currentVehicle={currentVehicle} maintenance_records={maintenance_records} setMaintenanceRecords={setMaintenanceRecords} />
       <Routes>
       <Route exact path="/login" element={<Login />} />
       </Routes>    

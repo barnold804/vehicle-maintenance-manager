@@ -5,8 +5,16 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
   const [year, setYear] = useState("")
   const [make, setMake] = useState("")
   const [model, setModel] = useState("")
-  const [mileage, setMilage] = useState("")
+  const [mileage, setMileage] = useState("")
   const [errors, setErrors] = useState([]);
+
+  function clearForm() {
+      setYear("")
+      setMake("")
+      setModel("")
+      setMileage("")
+      setErrors([])
+  }
 
   function handleCreateVehicle(e) {
     e.preventDefault();
@@ -27,6 +35,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
           vehicles.push(vehicle)
           setVehicles([...vehicles])
           setCurrentVehicle(vehicle)
+          clearForm()
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -61,7 +70,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
         <label>
           Mileage:
           <input type="text" name="mileage" pattern="[0-9]*" value={mileage} onChange={(e) =>
-            setMilage((v) => (e.target.validity.valid ? e.target.value : v))
+            setMileage((v) => (e.target.validity.valid ? e.target.value : v))
           } />
         </label>
         <input type="submit" value="Submit" />
