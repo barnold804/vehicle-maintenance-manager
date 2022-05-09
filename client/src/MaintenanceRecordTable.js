@@ -1,11 +1,11 @@
 import React from "react";
 import MaintenanceRecordRow from "./MaintenanceRecordRow";
 
-function MaintenanceRecordTable({ user, vehicles, maintenance_records, setMaintenanceRecords }) {
+function MaintenanceRecordTable({ maintenance_records, setMaintenanceRecords }) {
 
   return (
     <div>
-      Maintenance Records
+        <h2>Maintenance Records</h2>
       <table>
         <thead>
           <tr>

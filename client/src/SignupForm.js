@@ -27,7 +27,7 @@ function SignupForm({ onLogin, user }) {
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
-    });
+    }).catch((err) => console.log(err));
   }
 
   return (

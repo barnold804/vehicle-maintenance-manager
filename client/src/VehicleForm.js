@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function VehicleForm({ user, vehicles, setVehicles }) {
+function VehicleForm({ user, vehicles, setVehicles, currentVehicle }) {
 
-  const [year, setYear] = useState(0)
+  const [year, setYear] = useState("")
   const [make, setMake] = useState("")
   const [model, setModel] = useState("")
-  const [mileage, setMilage] = useState(0)
+  const [mileage, setMilage] = useState("")
   const [errors, setErrors] = useState([]);
 
   function handleCreateVehicle(e) {
@@ -43,6 +43,7 @@ function VehicleForm({ user, vehicles, setVehicles }) {
           {err}
         </h3>
       ))}
+        <h3>Add a Vehicle:</h3>
       <form onSubmit={handleCreateVehicle}>
         <label>
           Year:

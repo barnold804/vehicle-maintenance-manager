@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import VehicleRow from "./VehicleRow";
 
-function VehiclesTable({ user, vehicles, setVehicles, setMaintenanceRecords }) {
+function VehiclesTable({ user, vehicles, setVehicles, setCurrentVehicle, currentVehicle, setMaintenanceRecords }) {
 
   function handleDeleteVehicle(event, vehicle) {
     fetch(`users/${user.id}/vehicles/${vehicle.id}`, {
@@ -18,7 +18,7 @@ function VehiclesTable({ user, vehicles, setVehicles, setMaintenanceRecords }) {
 
   return (
     <div>
-      Vehicles
+      <h2>Vehicles</h2>
       <table>
         <thead>
           <tr>
@@ -28,11 +28,12 @@ function VehiclesTable({ user, vehicles, setVehicles, setMaintenanceRecords }) {
             <th>Model</th>
             <th>Mileage</th>
             <th>Remove Vehicle</th>
+            <th>Maintenance Records</th>
           </tr>
         </thead>
         <tbody>
           {vehicles.map((v) => (
-            <VehicleRow key={v.id} vehicle={v} user={user} handleDeleteVehicle={handleDeleteVehicle} setMaintenanceRecords={setMaintenanceRecords} />
+            <VehicleRow key={v.id} vehicle={v} user={user} handleDeleteVehicle={handleDeleteVehicle} setCurrentVehicle={setCurrentVehicle} setMaintenanceRecords={setMaintenanceRecords} />
           ))
           }
         </tbody>
