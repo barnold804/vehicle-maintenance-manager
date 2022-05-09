@@ -5,7 +5,7 @@ function VehicleRow({ vehicle, user, handleDeleteVehicle, setCurrentVehicle, mai
         fetch(`users/${user.id}/vehicles/${vehicle.id}/maintenance_records`, {
         }).then((r) => {
             r.json().then((a) => {
-                // setCurrentVehicle(vehicle)
+                setCurrentVehicle(vehicle)
                 setMaintenanceRecords(a)
             })
             // setMaintenanceRecords(r.filter(v => v.id !== maintenance_record.id))

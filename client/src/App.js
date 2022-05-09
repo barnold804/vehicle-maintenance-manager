@@ -12,7 +12,7 @@ function App() {
   const [user, setUser] = useState("");
   const [vehicles, setVehicles] = useState([]);
   const [maintenance_records, setMaintenanceRecords] = useState([]);
-  const [currentVehicle, setCurrentVehicle] = useState("");
+  const [currentVehicle, setCurrentVehicle] = useState(undefined);
 
   // Fetch User // This should depend on a session existing
   useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
   function handleLogout() {
     setUser("");
     setMaintenanceRecords("");
-    setCurrentVehicle("");
+    setCurrentVehicle(undefined);
   }
 
   if (!user) {
@@ -53,9 +53,9 @@ function App() {
   return (
     <div className="App">
       <Header user={user} onLogout={handleLogout} />
-      <VehiclesTable vehicles={vehicles} setMaintenanceRecords={setMaintenanceRecords} setVehicles={setVehicles} setCurrentVehicle={setCurrentVehicle} onLogout={handleLogout} user={user} />
-      <VehicleForm user={user} vehicles={vehicles} setVehicles={setVehicles} currentVehicle={currentVehicle} />
-      {maintenance_records.length === 0 ? <></> : <MaintenanceRecordTable maintenance_records={maintenance_records} onLogout={handleLogout}/> }
+      <VehiclesTable vehicles={vehicles} setMaintenanceRecords={setMaintenanceRecords} setVehicles={setVehicles} setCurrentVehicle={setCurrentVehicle} user={user} />
+      <VehicleForm user={user} vehicles={vehicles} setVehicles={setVehicles} setCurrentVehicle={setCurrentVehicle} />
+      <MaintenanceRecordTable maintenance_records={maintenance_records} currentVehicle={currentVehicle} />
       <MaintenanceRecordForm user={user} currentVehicle={currentVehicle} setMaintenanceRecords={setMaintenanceRecords} />
       <Routes>
       <Route exact path="/login" element={<Login />} />

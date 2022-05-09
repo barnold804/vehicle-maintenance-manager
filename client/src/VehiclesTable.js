@@ -9,6 +9,7 @@ function VehiclesTable({ user, vehicles, setVehicles, setCurrentVehicle, current
     }).then((r) => {
       if (r.ok) {
         setVehicles(vehicles.filter(v => v.id !== vehicle.id))
+        setCurrentVehicle(undefined)
         console.log("Delete was successful")
       } else {
         console.log("Delete was not successful")

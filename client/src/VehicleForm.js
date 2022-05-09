@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function VehicleForm({ user, vehicles, setVehicles, currentVehicle }) {
+function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
 
   const [year, setYear] = useState("")
   const [make, setMake] = useState("")
@@ -26,6 +26,7 @@ function VehicleForm({ user, vehicles, setVehicles, currentVehicle }) {
         r.json().then((vehicle) => {
           vehicles.push(vehicle)
           setVehicles([...vehicles])
+          setCurrentVehicle(vehicle)
         });
       } else {
         r.json().then((err) => setErrors(err.errors));

@@ -1,33 +1,43 @@
 import React from "react";
 import MaintenanceRecordRow from "./MaintenanceRecordRow";
 
-function MaintenanceRecordTable({ maintenance_records, setMaintenanceRecords }) {
+function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
 
-  return (
-    <div>
-        <h2>Maintenance Records</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Comment</th>
-            <th>Date</th>
-            <th>Mileage</th>
-            <th>Address</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          {maintenance_records.map((mr, v) => (
-            <MaintenanceRecordRow key={mr.id} vehicle={v} mr={mr} setMaintenanceRecords={setMaintenanceRecords} />
-          ))
-          }
-        </tbody>
-      </table>
-    </div>
-  )
+    if (!currentVehicle) {
+        return (
+            <div>Select a Vehicle to view Maintenance Records</div>
+        )
+    }
+    if (maintenance_records.length === 0) {
+        return (
+            <div>The Vehicle you selected has no Maintenance Records</div>
+        )
+    }
+    return (
+        <div>
+            <h2>Maintenance Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Comment</th>
+                        <th>Date</th>
+                        <th>Mileage</th>
+                        <th>Address</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {maintenance_records.map((mr) => (
+                        <MaintenanceRecordRow key={mr.id} mr={mr} />
+                    ))
+                    }
+                </tbody>
+            </table>
+        </div>
+    )
 }
 
 export default MaintenanceRecordTable;

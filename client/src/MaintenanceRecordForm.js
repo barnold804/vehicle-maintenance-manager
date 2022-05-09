@@ -42,6 +42,14 @@ function MaintenanceRecordForm({ user, vehicle, maintenance_records, setMaintena
     });
   }
 
+  if (!currentVehicle) {
+    return (
+      <div>
+            Text
+      </div>
+    );
+  }
+
   return (
     <div>
       {errors.map((err) => (
@@ -54,7 +62,7 @@ function MaintenanceRecordForm({ user, vehicle, maintenance_records, setMaintena
       ))}
       <form onSubmit={handleCreateMaintenanceRecord}>
         <label>
-            <h3>Add a Maintenance Record: {{currentVehicle}}</h3>
+            <h3>Add a Maintenance Record:</h3>
         <label>
           Category:
           <input type="text" name="category" value={category} onChange={(e) => setCategory(e.target.value)} />
