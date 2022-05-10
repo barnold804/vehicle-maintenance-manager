@@ -1,66 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Links } from "react-router-dom";
 import Login from "./Login";
 import Header from "./Header";
 import Footer from "./Footer";
-import VehiclesTable from "./VehiclesTable"
-import VehicleForm from "./VehicleForm";
-import MaintenanceRecordTable from "./MaintenanceRecordTable";
-import MaintenanceRecordForm from "./MaintenanceRecordForm";
+import Home from "./Home";
+import Profile from "./Profile";
+import NavBar from "./NavBar";
 
 function App() {
   const [user, setUser] = useState("");
-  const [vehicles, setVehicles] = useState([]);
-  const [maintenance_records, setMaintenanceRecords] = useState([]);
-  const [currentVehicle, setCurrentVehicle] = useState(undefined);
 
   // Fetch User // This should depend on a session existing
   useEffect(() => {
-    fetch("/me").then((r) => { 
+    fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
   }, []);
-  
-  // Fetch Vehicles
-  useEffect(() => {
-    fetch(`users/${user.id}/vehicles`).then((r) => {
-      if (r.ok) {
-        r.json().then((vehicles) => setVehicles(vehicles));
-      }
-    });
-  }, [user]);
 
   function handleLogout() {
     setUser("");
-    setMaintenanceRecords("");
-    setCurrentVehicle(undefined);
   }
 
-  if (!user) {
-    return (
-      <div>
-        <div style={{ paddingBottom: 60 }}>
-          <Header user={user} onLogout={handleLogout} />
-          <Login onLogin={setUser} />
-        </div>
-        <Footer></Footer>
-      </div>
-    );
+  function loginUser(user) {
+    setUser(user);
   }
 
   return (
     <div className="App">
-      <Header user={user} onLogout={handleLogout} />
-      <VehiclesTable vehicles={vehicles} setMaintenanceRecords={setMaintenanceRecords} setVehicles={setVehicles} setCurrentVehicle={setCurrentVehicle} user={user} />
-      <VehicleForm user={user} vehicles={vehicles} setVehicles={setVehicles} setCurrentVehicle={setCurrentVehicle} />
-      <MaintenanceRecordTable maintenance_records={maintenance_records} currentVehicle={currentVehicle} />
-      <MaintenanceRecordForm user={user} currentVehicle={currentVehicle} maintenance_records={maintenance_records} setMaintenanceRecords={setMaintenanceRecords} />
-      <Routes>
-      <Route exact path="/login" element={<Login />} />
-      </Routes>    
-      <Footer></Footer>
+      <NavBar user={user} onLogout={handleLogout} />
+      <main>
+        <Routes>
+          {
+            user ? (
+              <React.Fragment>
+                <Route path="/home/" element={<Home user={user} />} />
+                <Route path="/profile/" element={<Profile user={user} />} />
+              </React.Fragment>
+            ) : (
+              <Route path="/Login" element={<Login onLogin={loginUser}/>} />
+            )
+          }
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 }

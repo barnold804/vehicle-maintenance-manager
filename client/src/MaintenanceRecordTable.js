@@ -5,14 +5,22 @@ function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
 
     if (!currentVehicle) {
         return (
-            <div>Select a Vehicle to view Maintenance Records</div>
+            <div>
+                <h2>Maintenance Records</h2>
+                <div>The Vehicle you selected has no Maintenance Records</div>
+            </div>
         )
     }
+
     if (maintenance_records.length === 0) {
         return (
-            <div>The Vehicle you selected has no Maintenance Records</div>
+            <div>
+                <h2>Maintenance Records</h2>
+                <div>The Vehicle you selected has no Maintenance Records</div>
+            </div>
         )
     }
+
     return (
         <div>
             <h2>Maintenance Records</h2>
@@ -30,10 +38,7 @@ function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {maintenance_records.map((mr) => (
-                        <MaintenanceRecordRow key={mr.id} mr={mr} />
-                    ))
-                    }
+                    {maintenance_records.map((mr) => (<MaintenanceRecordRow key={mr.id} mr={mr} />))}
                 </tbody>
             </table>
         </div>

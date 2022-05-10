@@ -9,35 +9,18 @@ function NavBar({ user, onLogout }) {
     }
   
     return (
-      <div>
+      <div style={{display: "flex", flexDirection: "row", margin: 10}}>
         {
           user ? (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row-reverse",
-                margin: 10,
-              }}
-            >
-              <Link
-                to={"/login"}
-                onClick={handleLogout}
-                style={{ display: "block", margin: "auto", marginRight: 0 }}
-              >
-                Logout
-              </Link>
-  
-              <p
-                style={{
-                  display: "block",
-                  margin: "auto",
-                  marginLeft: 0,
-                }}
-              >
-                Welcome, {user.name}!
-              </p>
-            </div>
-          ) : null
+            <React.Fragment>
+              <p style={{display: "block", margin: "auto", marginLeft: 0}}> Welcome, {user.name}!</p>
+              <Link to="/home">Home</Link>
+              <Link to="/profile">Profile</Link>
+              <Link to="/login" onClick={handleLogout}>Logout</Link>
+            </React.Fragment>
+          ) : (
+            <Link to="/login" style={{display: "block", margin: "auto", marginRight: 0}}>Login</Link>
+          )
         }
       </div>
     );

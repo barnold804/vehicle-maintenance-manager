@@ -28,8 +28,8 @@ function VehiclesTable({ user, vehicles, setVehicles, setCurrentVehicle, current
             <th>Make</th>
             <th>Model</th>
             <th>Mileage</th>
-            <th>Remove Vehicle</th>
-            <th>Maintenance Records</th>
+            {/* <th>Remove Vehicle</th> */}
+            {/* <th>Maintenance Records</th> */}
           </tr>
         </thead>
         <tbody>

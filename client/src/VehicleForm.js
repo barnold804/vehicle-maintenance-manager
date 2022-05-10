@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Select from 'react-select';
+import axios from 'axios';
 
 function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
 
@@ -7,6 +9,13 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
   const [model, setModel] = useState("")
   const [mileage, setMileage] = useState("")
   const [errors, setErrors] = useState([]);
+  const [vehicleMakeList, setVehicleMakeList] = useState([]);
+
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ]
 
   function clearForm() {
       setYear("")
@@ -43,6 +52,36 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
     });
   }
 
+  useEffect(() => {
+    axios.get("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json").then((r) => {
+      if (r.ok) {
+        r.json().then((responseBodyJSON) => {
+          let theResults = responseBodyJSON["Results"]
+          console.log(theResults)
+          let resultArray = theResults.map(vm => vm["Make_Name"])
+          console.log(resultArray)
+          setVehicleMakeList(resultArray)
+        });
+      }
+    });
+  }, []);
+
+//   const axios = require('axios').default;
+
+// // Make a request for a user with a given ID
+// axios.get('/https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json')
+//   .then(function (response) {
+//     // handle success
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .then(function () {
+//     // always executed
+//   });
+
   return (
     <div>
       {errors.map((err) => (
@@ -61,6 +100,9 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
         </label>
         <label>
           Make:
+          <Select 
+            value={vehicleMakeList}
+            options={setVehicleMakeList}/>
           <input type="text" name="make" value={make} onChange={(e) => setMake(e.target.value)}/>
         </label>
         <label>
@@ -75,6 +117,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      {/* <button onClick={getVehicleMakeList}>Get All Vehicle Makes</button> */}
     </div>
   )
 }

@@ -71,7 +71,7 @@ function MaintenanceRecordForm({ user, maintenance_records, setMaintenanceRecord
       ))}
       <form onSubmit={handleCreateMaintenanceRecord}>
         <label>
-            <h3>Add a Maintenance Record:</h3>
+            <h3>Add a Maintenance Record for your {currentVehicle.year} {currentVehicle.make} {currentVehicle.model}:</h3>
         <label>
           Category:
           <input type="text" name="category" value={category} onChange={(e) => setCategory(e.target.value)} />
