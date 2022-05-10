@@ -54,7 +54,7 @@ function MaintenanceRecordForm({ user, maintenance_records, setMaintenanceRecord
   if (!currentVehicle) {
     return (
       <div>
-            Text
+            
       </div>
     );
   }

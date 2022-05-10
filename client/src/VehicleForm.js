@@ -53,34 +53,19 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
   }
 
   useEffect(() => {
-    axios.get("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json").then((r) => {
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json").then((r) => {
       if (r.ok) {
         r.json().then((responseBodyJSON) => {
           let theResults = responseBodyJSON["Results"]
-          console.log(theResults)
-          let resultArray = theResults.map(vm => vm["Make_Name"])
-          console.log(resultArray)
+          // console.log(theResults)
+          // console.log(responseBodyJSON)
+          let resultArray = theResults.map(vm => ({value: vm.Make_Name, label: vm.Make_Name}))
+          // console.log(resultArray)
           setVehicleMakeList(resultArray)
         });
       }
     });
   }, []);
-
-//   const axios = require('axios').default;
-
-// // Make a request for a user with a given ID
-// axios.get('/https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json')
-//   .then(function (response) {
-//     // handle success
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     // handle error
-//     console.log(error);
-//   })
-//   .then(function () {
-//     // always executed
-//   });
 
   return (
     <div>
@@ -102,7 +87,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
           Make:
           <Select 
             value={vehicleMakeList}
-            options={setVehicleMakeList}/>
+            options={vehicleMakeList}/>
           <input type="text" name="make" value={make} onChange={(e) => setMake(e.target.value)}/>
         </label>
         <label>
