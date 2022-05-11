@@ -134,6 +134,18 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
     setFilteredVehicleModels(filteredModels)
   }
 
+  function handleYearOnChange(selected) {
+    setSelectedYear(selected)
+    // console.log(selected)
+    setYear(selected.value)
+  }
+  
+  function handleMakeOnChange(selected) {
+    setSelectedMake(selected)
+    console.log(selected)
+    setMake(selected.label)
+  }
+
   return (
     (
       allVehicleMakes.length === 0 ?
@@ -155,7 +167,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
               <Select name="year"
                 options={AUTOMOBILE_YEARS}
                 value={selectedYear}
-                onChange={setSelectedYear}
+                onChange={handleYearOnChange}
                 inputValue={searchYear}
                 onInputChange={setSearchYear} />
             </label>
@@ -166,7 +178,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
                   <Select name="make"
                     options={filteredVehicleMakes}
                     value={selectedMake}
-                    onChange={setSelectedMake}
+                    onChange={handleMakeOnChange}
                     inputValue={searchMake}
                     onInputChange={onMakeSearchInputChange}
                   />
