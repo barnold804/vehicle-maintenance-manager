@@ -102,14 +102,16 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
     //   //   console.log("Models not fetched because no make has been selected")
     //   // } else 
 
-    fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${selectedMake}?format=json`)
+    fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${selectedMake.value}/modelyear/${selectedYear.value}?format=json`)
       .then(response => {
+        console.log(response)
         if (response.ok) {
           response.json().then((json) => {
+            console.log(json)
             let results = json['Results'];
             let models = results.map(translateModelToOption);
             setAllVehicleModels(models)
-            setFilteredVehicleMakes(models.slice(0, 20))
+            setFilteredVehicleModels(models.slice(0, 20))
           })
         } else {
           console.log("Fetch came back with non-200 status")
@@ -144,6 +146,12 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
     setSelectedMake(selected)
     console.log(selected)
     setMake(selected.label)
+  }
+
+  function handleModelOnChange(selected) {
+    setSelectedModel(selected)
+    console.log(selected)
+    setModel(selected.label)
   }
 
   return (
@@ -190,7 +198,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
                       <Select name="model"
                         options={filteredVehicleModels}
                         value={selectedModel}
-                        onChange={setSelectedModel}
+                        onChange={handleModelOnChange}
                         inputValue={searchModel}
                         onInputChange={onModelSearchInputChange}
                       />
