@@ -14,7 +14,7 @@ function NavBar({ user, onLogout }) {
           user ? (
             <React.Fragment>
               <p style={{display: "block", margin: "auto", marginLeft: 0}}> Welcome, {user.name}!</p>
-              <Link to="/home">Home</Link>
+              <Link to="/home" >Home</Link>
               <Link to="/profile">Profile</Link>
               <Link to="/login" onClick={handleLogout}>Logout</Link>
             </React.Fragment>

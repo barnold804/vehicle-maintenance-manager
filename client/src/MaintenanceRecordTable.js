@@ -7,7 +7,7 @@ function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
         return (
             <div>
                 <h2>Maintenance Records</h2>
-                <div>The Vehicle you selected has no Maintenance Records</div>
+                <div>Click "View Maintenance Records" on a vehicle to view Maintenance Records</div>
             </div>
         )
     }

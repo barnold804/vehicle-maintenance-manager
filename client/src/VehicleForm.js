@@ -23,6 +23,11 @@ function VehicleForm({user, vehicles, setVehicles, setCurrentVehicle}) {
   const [filteredVehicleMakes, setFilteredVehicleMakes] = useState([])
   const [searchMake, setSearchMake] = useState("")
   const [selectedMake, setSelectedMake] = useState("")
+  // Models!
+  const [allVehicleModels, setAllVehicleModels] = useState([])
+  const [filteredVehicleModels, setFilteredVehicleModels] = useState([])
+  const [searchModel, setSearchModel] = useState("")
+  const [selectedModel, setSelectedModel] = useState("")
   // Might not need?
   const [make, setMake] = useState("")
   // TBD
@@ -69,6 +74,11 @@ function VehicleForm({user, vehicles, setVehicles, setCurrentVehicle}) {
     return {value: make.Make_ID, label: make.Make_Name}
   }
 
+  function translateModelToOption(model) {
+    return {value: model.Model_ID, label: model.Model_Name}
+  }
+
+  // Fetch Makes
   useEffect(() => {
     fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json")
       .then(response => {
@@ -85,12 +95,41 @@ function VehicleForm({user, vehicles, setVehicles, setCurrentVehicle}) {
       })
   }, []);
 
+  // Fetch Models
+  useEffect(() => {
+    // if(selectedMake("")) {
+    //   console.log("Models not fetched because no make has been selected")
+    // } else 
+    fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${selectedMake}?format=json`)
+      .then(response => {
+        if(response.ok) {
+          response.json().then((json) => {
+            let results = json['Results'];
+            let models = results.map(translateModelToOption);
+            setAllVehicleModels(models)
+            setFilteredVehicleMakes(models.slice(0, 20))
+          })  
+        } else {
+          console.log("Fetch came back with non-200 status")
+          console.log(response)
+        }
+      })
+  }, [selectedMake]);
+  
   function onMakeSearchInputChange(searchTerm) {
     setSearchMake(searchTerm)
     let filteredMakes = allVehicleMakes.filter(make => {
       return make.label.toLowerCase().includes(searchTerm.toLowerCase())
     }).slice(0, 25)
     setFilteredVehicleMakes(filteredMakes)
+  }
+
+  function onModelSearchInputChange(searchTerm) {
+    setSearchModel(searchTerm)
+    let filteredModels = allVehicleModels.filter(model => {
+      return model.label.toLowerCase().includes(searchTerm.toLowerCase())
+    }).slice(0, 25)
+    setFilteredVehicleModels(filteredModels)
   }
 
   return (
@@ -126,6 +165,22 @@ function VehicleForm({user, vehicles, setVehicles, setCurrentVehicle}) {
                       onChange={setSelectedMake}
                       inputValue={searchMake}
                       onInputChange={onMakeSearchInputChange}
+              />
+            </label>
+            <label>
+              Model:
+              <Select name="model"
+                      options={filteredVehicleModels}
+                      value={selectedModel}
+                      onChange={setSelectedModel}
+                      inputValue={searchModel}
+                      onInputChange={onModelSearchInputChange}
+              />
+            </label>
+            <label>
+              Mileage:
+              <input type="text" name="mileage" pattern="[0-9]*" value={mileage} onChange={(e) =>
+                  setMileage((v) => (e.target.validity.valid ? e.target.value : v)) }
               />
             </label>
             <input type="submit" value="Submit"/>

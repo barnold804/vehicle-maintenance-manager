@@ -61,3 +61,16 @@
     gap: 8px;
     margin: 10px;
   }
+  
+  .css-b62m3t-container {
+    width: 300px
+  }
+  
+  main {
+    display: flex;
+    position: relative;
+    background: cornflowerblue;
+    padding:auto;
+    margin:auto;
+    text-align:centre;
+  }
