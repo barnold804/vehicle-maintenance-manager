@@ -69,8 +69,41 @@
   main {
     display: flex;
     position: relative;
-    background: cornflowerblue;
+    background: white;
     padding:auto;
     margin:auto;
-    text-align:centre;
+    text-align:center;
+  }
+
+  #vehicle-form {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  #main-window {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  #root {
+    background: cornflowerblue;
+  }
+  
+  #header {
+    background: tan;
+  }
+
+  #mr-row {
+    text-align:center;
+    margin: 50px;
+  }
+
+  #v-row {
+    text-align:center;
+    margin: 50px;
+  }
+
+  #vehicles {
+    position: relative;
+    margin: 50px;
   }

@@ -24,14 +24,12 @@ users.each do |u|
     user = User.create(name: u[0], email_address: u[1], password: "password" )
     
     puts "Creating Vehicles..."
-    5.times do
-        vehicle = Vehicle.create(user: user, year: rand(1980..2022), make: Faker::Vehicle.make, model: Faker::Vehicle.model, mileage: Faker::Vehicle.mileage)
+        vehicle = Vehicle.create(user: user, year: rand(1990..2022), make: "Toyota", model: "Corolla", mileage: Faker::Vehicle.mileage)
+        vehicle = Vehicle.create(user: user, year: rand(1990..2022), make: "Subaru", model: "Forester", mileage: Faker::Vehicle.mileage)
         
         puts "Creating Maintenance Records..."
-        5.times do
-            MaintenanceRecord.create(vehicle: vehicle, category: "category here", description: "descripton here", comment: "comment here", date: Faker::Date.between(from: 5.years.ago, to: Date.today), mileage: Faker::Vehicle.mileage, address: "address here", cost: rand(50...2500))
-        end
-    end
+            MaintenanceRecord.create(vehicle: vehicle, category: "Engine", description: "Oil change", comment: "5w-30 oil, new filter installed", date: Faker::Date.between(from: 5.months.ago, to: Date.today), mileage: Faker::Vehicle.mileage, address: "123 Main St.", cost: rand(50...250))
+            MaintenanceRecord.create(vehicle: vehicle, category: "Wheels", description: "Installed new all-season tires", comment: "Uneven tire wear noticed, may need alignemnt", date: Faker::Date.between(from: 5.months.ago, to: Date.today), mileage: Faker::Vehicle.mileage, address: "359 Fifth Ave.", cost: rand(50...250))
 end
 
 puts "Seeding completed!"

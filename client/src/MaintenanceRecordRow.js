@@ -3,8 +3,8 @@ import React from "react";
 function MaintenanceRecordRow({ mr }) {
 
     return (
-        <tr key={mr.id}>
-            <td>{mr.id}</td>
+        <tr key={mr.id} id="mr-row">
+            {/* <td>{mr.id}</td> */}
             <td>{mr.category}</td>
             <td>{mr.description}</td>
             <td>{mr.comment}</td>

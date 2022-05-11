@@ -18,12 +18,12 @@ function VehiclesTable({ user, vehicles, setVehicles, setCurrentVehicle, current
   }
 
   return (
-    <div>
+    <div id="vehicles">
       <h2>Vehicles</h2>
       <table>
         <thead>
           <tr>
-            <th>id</th>
+            {/* <th>id</th> */}
             <th>Year</th>
             <th>Make</th>
             <th>Model</th>

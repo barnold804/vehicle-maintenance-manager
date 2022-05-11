@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <NavBar user={user} onLogout={handleLogout} />
-      <main>
+      <main id="main-window">
         <Routes>
           {
             user ? (

@@ -27,7 +27,7 @@ function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
             <table>
                 <thead>
                     <tr>
-                        <th>id</th>
+                        {/* <th>id</th> */}
                         <th>Category</th>
                         <th>Description</th>
                         <th>Comment</th>

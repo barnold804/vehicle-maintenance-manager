@@ -15,8 +15,8 @@ function VehicleRow({ vehicle, user, handleDeleteVehicle, setCurrentVehicle, mai
     }
 
     return (
-        <tr key={vehicle.id}>
-            <td>{vehicle.id}</td>
+        <tr key={vehicle.id} id="v-row">
+            {/* <td>{vehicle.id}</td> */}
             <td>{vehicle.year}</td>
             <td>{vehicle.make}</td>
             <td>{vehicle.model}</td>

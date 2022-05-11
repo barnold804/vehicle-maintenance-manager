@@ -9,7 +9,7 @@ function Header({ user, onLogout }) {
   }
 
   return (
-    <div>
+    <div id="header">
       {
         user ? (
           <div
