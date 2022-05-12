@@ -12,25 +12,22 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
       return { value: year, label: year }
     })
 
-  // Years!
+  // Years
   const [selectedYear, setSelectedYear] = useState("")
   const [searchYear, setSearchYear] = useState("")
-  // Might not need?
-  const [year, setYear] = useState("")
-
-  // Makes!
+  // Makes
   const [allVehicleMakes, setAllVehicleMakes] = useState([])
   const [filteredVehicleMakes, setFilteredVehicleMakes] = useState([])
   const [searchMake, setSearchMake] = useState("")
   const [selectedMake, setSelectedMake] = useState("")
-  // Models!
+  // Models
   const [allVehicleModels, setAllVehicleModels] = useState([])
   const [filteredVehicleModels, setFilteredVehicleModels] = useState([])
   const [searchModel, setSearchModel] = useState("")
   const [selectedModel, setSelectedModel] = useState("")
-  // Might not need?
+  // Submission variables
+  const [year, setYear] = useState("")
   const [make, setMake] = useState("")
-  // TBD
   const [model, setModel] = useState("")
   const [mileage, setMileage] = useState("")
   const [errors, setErrors] = useState([]);
@@ -51,7 +48,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        year,   // this may break
+        year,
         make,
         model,
         mileage,
@@ -97,11 +94,6 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
 
   // Fetch Models
   useEffect(() => {
-
-    //   // if(selectedMake("")) {
-    //   //   console.log("Models not fetched because no make has been selected")
-    //   // } else 
-
     fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${selectedMake.value}/modelyear/${selectedYear.value}?format=json`)
       .then(response => {
         console.log(response)
@@ -115,7 +107,6 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
           })
         } else {
           console.log("Fetch came back with non-200 status")
-          console.log(response)
         }
       })
   }, [selectedMake]);
@@ -138,19 +129,16 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
 
   function handleYearOnChange(selected) {
     setSelectedYear(selected)
-    // console.log(selected)
     setYear(selected.value)
   }
   
   function handleMakeOnChange(selected) {
     setSelectedMake(selected)
-    console.log(selected)
     setMake(selected.label)
   }
 
   function handleModelOnChange(selected) {
     setSelectedModel(selected)
-    console.log(selected)
     setModel(selected.label)
   }
 
@@ -215,12 +203,9 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
                     }
                     <input type="submit" value="Submit" />
                   </React.Fragment>
-
                 }
-
               </React.Fragment>
             }
-
           </form>
         </div>
     )
