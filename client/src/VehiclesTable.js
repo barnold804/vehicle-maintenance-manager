@@ -20,16 +20,13 @@ function VehiclesTable({ user, vehicles, setVehicles, setCurrentVehicle, current
   return (
     <div id="vehicles">
       <h2>Vehicles</h2>
-      <table>
+      <table id="vehicles-table">
         <thead>
           <tr>
-            {/* <th>id</th> */}
             <th>Year</th>
             <th>Make</th>
             <th>Model</th>
             <th>Mileage</th>
-            {/* <th>Remove Vehicle</th> */}
-            {/* <th>Maintenance Records</th> */}
           </tr>
         </thead>
         <tbody>

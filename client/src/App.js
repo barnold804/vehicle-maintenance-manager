@@ -39,7 +39,7 @@ function App() {
                 <Route path="/profile/" element={<Profile user={user} />} />
               </React.Fragment>
             ) : (
-              <Route path="/Login" element={<Login onLogin={loginUser}/>} />
+              <Route path="/Login" element={<Login onLogin={loginUser} />} />
             )
           }
         </Routes>

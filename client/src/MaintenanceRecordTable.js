@@ -7,7 +7,7 @@ function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
         return (
             <div>
                 <h2>Maintenance Records</h2>
-                <div>Click "View Maintenance Records" on a vehicle to view Maintenance Records</div>
+                <div>Click "View Maintenance Records" for a vehicle to view Maintenance Records here!</div>
             </div>
         )
     }
@@ -16,7 +16,7 @@ function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
         return (
             <div>
                 <h2>Maintenance Records</h2>
-                <div>The Vehicle you selected has no Maintenance Records</div>
+                <div>The Vehicle you selected has no Maintenance Records!</div>
             </div>
         )
     }
@@ -24,7 +24,7 @@ function MaintenanceRecordTable({ maintenance_records, currentVehicle }) {
     return (
         <div>
             <h2>Maintenance Records</h2>
-            <table>
+            <table id="mr-table">
                 <thead>
                     <tr>
                         {/* <th>id</th> */}

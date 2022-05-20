@@ -29,7 +29,7 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <form
+    <form id="login-form"
       onSubmit={handleSubmit}
       style={{
         display: "flex",

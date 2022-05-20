@@ -1,9 +1,10 @@
 import React from "react";
 
-function Profile({user}) {
+function Profile({ user, vehicles }) {
     return (
-        <div>
-            Profile
+        <div key={user.id} id="u-row">
+            <div>User Name: {user.name}</div>
+            <div>Email: {user.email_address}</div>
         </div>
     )
 }

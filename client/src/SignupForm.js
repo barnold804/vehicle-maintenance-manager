@@ -31,7 +31,7 @@ function SignupForm({ onLogin, user }) {
   }
 
   return (
-    <div>
+    <div id="signup-form">
       <form
         onSubmit={handleSubmit}
         style={{

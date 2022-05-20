@@ -12,7 +12,7 @@ function Header({ user, onLogout }) {
     <div id="header">
       {
         user ? (
-          <div
+          <div id="welcome-user"
             style={{
               display: "flex",
               flexDirection: "row-reverse",

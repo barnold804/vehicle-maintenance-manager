@@ -6,13 +6,14 @@ function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <div>
+    <div >
       {showLogin ? (
         <>
           <br />
           <br />
-          <h1
-            style={{ display: "block", margin: "auto", width: "fit-content" }}
+          <h1 id="login"
+            style={{ display: "block", margin: "auto", width: "fit-content" }
+          }
           >
             Vehicle Maintenance Manager
           </h1>
@@ -20,7 +21,7 @@ function Login({ onLogin }) {
           <LoginForm onLogin={onLogin} />
           <br />
           <div
-            style={{ display: "block", margin: "auto", width: "fit-content" }}
+            style={{ display: "block", margin: "auto", width: "50%" }}
           >
             <p>
               New user? &nbsp;
@@ -30,14 +31,15 @@ function Login({ onLogin }) {
             </p>
           </div>
         </>
-      ) : (
+      ) : 
+      (
         <>
           <br />
           <br />
           <SignUpForm onLogin={onLogin} />
           <br />
           <div
-            style={{ display: "block", margin: "auto", width: "fit-content" }}
+            style={{ display: "block", margin: "auto", width: "20%" }}
           >
             <p>
               &nbsp;

@@ -10,7 +10,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
   const AUTOMOBILE_YEARS = range(1888, CURRENT_YEAR)
     .map((year) => {
       return { value: year, label: year }
-    })
+    }).reverse()
 
   // Years
   const [selectedYear, setSelectedYear] = useState("")
@@ -90,7 +90,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
           console.log("Fetch came back with non-200 status")
         }
       })
-  }, []);
+  }, [selectedYear]);
 
   // Fetch Models
   useEffect(() => {
