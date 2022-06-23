@@ -18,12 +18,9 @@ function Footer() {
         }}
       >
         Created by:{" "}
-        <a
-          href="https://www.linkedin.com/in/brian-arnold-98063468/"
-          className="footer-link"
-        >
-          Brian Arnold
-        </a>{" "}
+        <a href="https://www.linkedin.com/in/brian-arnold-98063468/" target="_blank" rel="noopener noreferrer">
+        Brian Arnold
+      </a>
       </p>
     </div>
   );

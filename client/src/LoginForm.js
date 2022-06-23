@@ -9,7 +9,7 @@ function LoginForm({ onLogin }) {
   const navigate = useNavigate();
 
   function handleSubmit(e) {
-    navigate("/");
+    navigate("/home");
     e.preventDefault();
     setIsLoading(true);
     fetch("/login", {

@@ -11,7 +11,7 @@ function SignupForm({ onLogin, user }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate("/");
+    navigate("/home");
     setErrors([]);
     setIsLoading(true);
     fetch("/signup", {
