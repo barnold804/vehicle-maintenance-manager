@@ -20,7 +20,7 @@ function VehicleRow({ vehicle, user, handleDeleteVehicle, setCurrentVehicle, mai
             <td>{vehicle.year}</td>
             <td>{vehicle.make}</td>
             <td>{vehicle.model}</td>
-            <td>{vehicle.mileage}</td>
+            <td>{vehicle.mileage.toLocaleString()}</td>
             <td>
                 <button onClick={(event) => handleDeleteVehicle(event, vehicle)}>Remove Vehicle</button>
                 <button onClick={(event) => handleMaintenanceRecordLoad(event, setCurrentVehicle, maintenance_records)}>View Maintenance Records</button>

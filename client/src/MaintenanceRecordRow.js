@@ -9,9 +9,9 @@ function MaintenanceRecordRow({ mr }) {
             <td>{mr.description}</td>
             <td>{mr.comment}</td>
             <td>{mr.date}</td>
-            <td>{mr.mileage}</td>
+            <td>{mr.mileage.toLocaleString()}</td>
             <td>{mr.address}</td>
-            <td>{mr.cost}</td>
+            <td>${mr.cost}</td>
         </tr>
     )
 }
