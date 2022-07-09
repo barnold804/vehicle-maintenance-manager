@@ -58,6 +58,7 @@ function SignupForm({ onLogin, user }) {
           onChange={(e) => setEmailAddress(e.target.value)}
         />
         <label htmlFor="password">Password</label>
+        <label> (Requirement: 8 or more characters, a digit, lower and upper case characters, and a symbol)</label>
         <input
           type="password"
           id="password"
