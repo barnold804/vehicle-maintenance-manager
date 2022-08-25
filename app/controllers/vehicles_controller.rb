@@ -33,7 +33,7 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.permit(:year, :make, :model, :mileage)
+    params.permit(:user_id, :year, :make, :model, :mileage)
   end
 
   def render_unprocessable_entity(invalid)
