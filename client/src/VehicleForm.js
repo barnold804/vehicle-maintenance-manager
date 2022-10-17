@@ -36,10 +36,14 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
     setYear("")
     setMake("")
     setModel("")
+    setSelectedModel(null);
+    setSelectedModel(null);
+    setSelectedYear(null);
     setMileage("")
     setErrors([])
   }
 
+  // debugger
   function handleCreateVehicle(e) {
     e.preventDefault();
     fetch(`users/${user.id}/vehicles/`, {
@@ -48,12 +52,16 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        year,
-        make,
-        model,
-        mileage,
+        vehicle: {
+          year,
+          make,
+          model,
+          mileage,
+        }
       }),
     }).then((r) => {
+      console.log("Just finished posting the vehicle")
+      console.log(r)
       if (r.ok) {
         r.json().then((vehicle) => {
           vehicles.push(vehicle)
@@ -80,6 +88,8 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
     fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json")
       .then(response => {
         if (response.ok) {
+          console.log(response)
+          console.log("Make was fetched")
           response.json().then((json) => {
             let results = json['Results'];
             let makes = results.map(translateMakeToOption);
@@ -87,16 +97,18 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
             setFilteredVehicleMakes(makes.slice(0, 20))
           })
         } else {
-          console.log("Fetch came back with non-200 status")
+          console.log("Fetch for Makes came back with non-200 status")
         }
       })
-  }, [selectedYear]);
+  }, []);
 
   // Fetch Models
   useEffect(() => {
+    if(!selectedMake) return;
     fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${selectedMake.value}/modelyear/${selectedYear.value}?format=json`)
       .then(response => {
         console.log(response)
+        console.log("Model was fetched")
         if (response.ok) {
           response.json().then((json) => {
             console.log(json)
@@ -106,7 +118,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
             setFilteredVehicleModels(models.slice(0, 20))
           })
         } else {
-          console.log("Fetch came back with non-200 status")
+          console.log("Fetch for Models came back with non-200 status")
         }
       })
   }, [selectedMake]);
@@ -131,7 +143,7 @@ function VehicleForm({ user, vehicles, setVehicles, setCurrentVehicle }) {
     setSelectedYear(selected)
     setYear(selected.value)
   }
-  
+
   function handleMakeOnChange(selected) {
     setSelectedMake(selected)
     setMake(selected.label)
