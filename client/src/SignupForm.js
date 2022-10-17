@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function SignupForm({ onLogin, user }) {
   const [name, setName] = useState("");
@@ -7,11 +6,9 @@ function SignupForm({ onLogin, user }) {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate("/home");
     setErrors([]);
     setIsLoading(true);
     fetch("/signup", {
@@ -21,11 +18,21 @@ function SignupForm({ onLogin, user }) {
       },
       body: JSON.stringify({ name, email_address, password }),
     }).then((r) => {
+      console.log("Signup submit response")
       setIsLoading(false);
+      console.log(r)
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => {
+          console.log("User is")
+          console.log(user)
+          onLogin(user)
+        });
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => {
+          console.log("Error is")
+          console.log(err)
+          setErrors(err.errors)
+        });
       }
     }).catch((err) => console.log(err));
   }
@@ -70,6 +77,7 @@ function SignupForm({ onLogin, user }) {
           {isLoading ? "Loading..." : "Sign Up"}
         </button>
         {errors.map((err) => (
+
           <h3
             key={err}
             style={{
@@ -81,6 +89,7 @@ function SignupForm({ onLogin, user }) {
           >
             {err}
           </h3>
+
         ))}
       </form>
       <br />

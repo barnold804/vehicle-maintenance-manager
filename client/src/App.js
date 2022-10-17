@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Links } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Links, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 
 function App() {
   const [user, setUser] = useState("");
+  const navigate = useNavigate()
 
   // Fetch User // This should depend on a session existing
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
 
   function loginUser(user) {
     setUser(user);
+    navigate("/home");    
   }
 
   return (

@@ -31,8 +31,7 @@ function Login({ onLogin }) {
             </p>
           </div>
         </>
-      ) : 
-      (
+      ) : (
         <>
           <br />
           <br />
